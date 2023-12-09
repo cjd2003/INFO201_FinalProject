@@ -1,6 +1,6 @@
-# INFO 201 Final Project
+# INFO 201 Final Project :
 
-# Basic guidelines for artist based on current music trends
+## Basic guidelines for artists based on current music trends
 Analysis of Spotify songs to provide directions of new and current musical artists done for a final project for INFO 201. 
 
 This report serves as a guide for anybody already in or wanting to join the music industry. Throughout our guide, we address three key questions: What are the most popular music genres? Is there a relationship between the rise of artists and popular genres? What are the basic elements of a song that could result in it becoming a popular song?
