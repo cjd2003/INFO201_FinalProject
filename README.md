@@ -1,4 +1,4 @@
-# INFO 201 FinalProject
+# INFO 201 Final Project
 
 # Basic guidelines for artist based on current music trends
 Analysis of Spotify songs to provide directions of new and current musical artists done for a final project for INFO 201. 
