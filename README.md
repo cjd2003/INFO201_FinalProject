@@ -7,3 +7,4 @@ Our guide provides people with yearly societal trends as well as giving them inf
 
 From our study, we ultimately found that for success in the music industry, you will have the best chances if you create a song that falls under the genres of dance and hip-hop. The song should be around three minutes and thirty seconds and should include lyrics with a beat that conveys deep and raw emotions, preferably in a major mode.
 
+<img width="725" alt="Screenshot 2023-12-08 at 8 20 10 PM" src="https://github.com/cjd2003/INFO201_FinalProject/assets/59383518/f36d22b4-619b-438e-838a-ede3ce9e5456">
