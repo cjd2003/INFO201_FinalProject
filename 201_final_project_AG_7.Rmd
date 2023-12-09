@@ -1,0 +1,549 @@
+---
+title: "201 Final Project"
+author: "Francisco Morales, Jay Kim, Jorryn Decker Clement"
+date: "2023-12-09"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+## Introduction
+
+Our group decided to choose our topic on music making. This is interesting because music is
+everywhere, and we, as college students, especially listen to music on a daily basis. Music has 
+been growing throughout the years and more and more people are connecting to and with music. 
+Music can be seen as more than just songs. Everybody has a unique perspective on music and their 
+reason of why they listen to it are all different. Our group listens to music on a daily basis to
+relax, relieve stress, and concentrate. Others can use music to express themselves and tell a 
+story by pouring their emotions into their songs. Music offers endless possibilities for its use,
+being available to people of all age groups. 
+
+We know that today, some of the most popular music genres include pop, hip-hop, and R&B. Music 
+production has improved and become easier over the past 5 years with increased access to in-home 
+studios and equipment. We also know that Spotify is the number one music streaming platform in 
+the world and using data from Spotify will give us the most accurate conclusions. Spotify is the 
+best when it comes to extensive device compatibility, supporting iOS, Android, Mac, and Windows 
+platforms. Spotify can also be accessed through the internet with web browsers such as Chrome, 
+Firefox, Edge, Opera, and Safari. Additionally, it can also reach devices such as cars, TVs, 
+gaming consoles, smartwatches, and many more. If music producers want their music to gain more 
+recognition, they should upload their work to Spotify as it has the ability to offer the most 
+exposure. 
+
+Our focus will be choosing two music-related datasets, preferably those that get their data from 
+Spotify. Once we decide on two concrete datasets, we are going to find a common variable (such as
+artist name or song name) that is shared by both datasets and combine them into one merged 
+dataset. Once we have this combined dataset, we are going to look through the variables and 
+select a handful that we think are the best fit for our argument. Using these variables, we will 
+answer the questions that support our claim. These questions include: What are the most popular 
+music genres? Is there a relationship between the rise of artists and popular genres? What are 
+the basic elements of a song that could result in it becoming a popular song? We chose these 
+questions with the goal of helping our target group gain exposure by allowing them to create 
+music based on the current societal music trends. The answers to these questions will provide 
+music producers and artists with a guide that they can take inspiration from when creating their 
+projects. After we answer these questions based on the merged dataset, we will create graphs for 
+each one of them so that we can compare the different variables and draw conclusions. To create 
+these graphs, we will choose two to three variables that we want to see comparisons of and 
+incorporate them into one graph. Once we have created these graphs, our primary objective is to 
+connect all of these graphs so that we can answer our why for this project. 
+
+Our report is interesting because it is designed for people who are trying to have a career in 
+music. Our report will consist of the key features that seem to work best in songs, helping new 
+music creators draw inspiration and create their own music. People should care about this because
+they can use our guide to create their musical projects accordingly. If the audience follows our 
+guide, it will give them a better chance for their music to become popular. It will give them 
+information about which genre they should be in, how long their songs should be, and the perfect 
+amount of beats and instruments to use in their songs. They should base their next project 
+following our guide to see the best results as our graph shows what the people want/want to 
+listen to in the music world. 
+
+## Explaining Our Data 
+
+### Dataset Criteria
+
+With our original concept we were attempting to find trends in the top music on 
+Spotify, however when merging our original datasets we found many complications. 
+Our original data sets were _Top Spotify songs from 2010-2019-BY YEAR_ and 
+_Spotify top 10000 Streamed Songs_ which we thought would allow us to answer the
+main topic we were interested in. However, when merging we found that the only key we
+could use to merge was _song name_ which resulted in complications. When merged 
+together we had various repeats as some songs had the same name but written by 
+different artists, and when we tried to eliminate these repeats we found that none
+of our filter methods kept any songs. With these issue we then decided to find
+new data sets. The ones we decided to select _30000 Spotify Songs_ and 
+_Spotify_1Million_Tracks_. These data sets fit our criteria as we found a great way 
+to merge the two using the _track_name_, which was unique for all of the values in each data set.
+We also believed that the variables the data sets contained would allow us to explore our question effectively.
+
+### Dataset Info
+
+To find our data sets we stayed on Kaggle which was where our original data was from.
+We thought this was the best choice, as we belived we would find similar data sets when compared to our original one. On Kaggle is where we found _30000 Spotify Songs_ and _Spotify_1Million_Tracks_.
+For _30000 Spotify Songs_ there was only one person who collected it and they were 
+Joakim Arvidsson. For _Spotify_1Million_Tracks_ there were a total of 3 collectors who 
+were Amintash Joshi, Vedant Das, and Amit  Parolkar.The data was not restricted in any form it is freely available to anyone. The only real restriction would be needing a Kaggle account, but besided that it is open to everyone with a Kaggle account. Since there are no restrictions
+and the authors didn't post any intention for its use, we believe that it can be used for any
+purpose. Both of the data sets contain various components of the music. 
+
+### Dataset Components
+
+The data sets each contain their own respectvie set of details for the music it contains. However in both data sets one row represents a distinct song with a specific name and artist.The main reason we chose both of these data sets was becasue they each contained the column _track_id_ which is what we used for the merging key.
+The _Spotify_1Million_Tracks_ contained 1159764 observations and 20 diffferent variables while the _30000 Spotify Songs_ had 32833 observations and 23 variables. Furthermore the columns we were interested in _Spotify_1Million_Tracks_ were _artist_name_, _popularity_, _year_,and _genre_. For the _30000 Spotify Songs_ we were interested in the variables _track_artist_ , _mode_, _valance_, _energy_, and _duration_ms_. The _artist_name_ and _track_artist_ column is in the form of a string in both sets and contain the name of the artist who wrote the specified song for the row. This column contains 64159 distinct artists in the _Spotify_1Million_Tracks_ while it contains 10693 distinct artists in _30000 Spotify Songs_. The _year_ column is the release year for the specified song in _Spotify_1Million_Tracks_ and is in the form of integers and ranges from 2000 to 2023. The _popularity_ contains values from 0 to 100 and dictates how popular the song is, there isn't much info on how they go about dictating the popularity which we were confused about. The _genre_ column is in strings and contains the genre type the song is categorized in. There are a total of 82 genres the song can be categorized in. The _mode_ variable represents if the song is in major (denoted by 1) or in minor (denoted by 0). Both _valance_ and _energy_ variables range from 0 to 1.0. Higher _valance_ values represent more positive emotions while a lower one represent negative ones. For _energy_ higher values represent a faster, louder, and noisier song while lower ones represent slower, mellow, and more silent songs. The _duration_ms_ is an integer form and is just the length of the song in milliseconds. For the data set we selected there was no missing data as we believe Spotify does a good job at keeping track of all of the songs they keep, especially since the songs were more recent. For this reason we didn't find any non-plausible values nor quality issues in our data.  
+
+### Final Dataset 
+
+Our final data set was created by using _inner_join_ merging with a join key of the _track_id_ for each data set. This left us with a total of 4796 observations we included 25 variables. The important variables that were included were the ones mentioned before. 
+
+## Methods
+
+The most important variables that we used for our analyses were - _year, genre, popularity, mode, energy, valence, duration, and artist name_. The reason why we
+used these variables was because they enabled us to find correlations between each other that would help us in conveying our story. We experimented with other
+variables as well, however, though they did not show anything contradicting to our story, the evidence or proof of explanation that we received from them was
+relatively poor and hence we ignored them. Our choice of variables was a mix of continuous data, which provided an accurate way of quantifying and understanding
+the data itself, and categorical data, which enabled us to quickly recognize trends, changes and patterns based on inter-related variable.  
+
+After importing the two data sets - _Spotify_1Million_Tracks_ and _30000 Spotify Songs_ into R, the first step we did was to use the _**head()**_ function in R to
+understand the different variables and the observations that was in the two data sets. This enabled us to identify the merge key that would efficiently merge the
+2 data sets. We also identified the variables that would be useful as well as those that would not and removed variables that would prove not useful for our
+purposes by using the _dplyr_ function _**select()**_ to choose every column other than the ones we did not want. The columns that we eliminated were -
+_playlist_name, playlist_id,__playlist_genre, and playlist_subgenre_. Once we agreed on this, we merged the two data sets using _**inner_join()**_. The merge key
+for this merge was the variable containing the name of the songs which was called _'track_name'_ in both the data sets. We used _**inner_join()**_ between the 1
+million and the 30000 song data set to ensure that the final data set will result in a table with no NA or NULL values. This minimized our
+observations from 1 million to just about 6000. 
+
+After merging the 2 data sets, we observed that there were certain rows that were duplicated even though all the oberservations for the different variables were
+the same. Therefore, in order to remove the duplicates, we used the _**unique()**_ function in R to perform this task. We also learnt that there were two
+_popularity_ variables, one from each of the original data set, that were not equal to each other. Hence, we eliminated one of them, namely the one from the 30000
+songs data, because we thought that the data set with the 1 million songs had better popularity ranking than the 30000 due to larger collections of songs in that
+data set. In order, to make our analysis more interesting with trends relating to popularity, we decided to keep all observations that had a popularity rank of 60
+or higher using the _dplyr_ function _**filter()**_. The final cleaning was to remove the year 2020 because graphing certain relationship showed that the 
+observations from 2020 acted as outliers to the analyses. The final data set that we used for our analyses was about 1300 observations and 24 variables. 
+
+For processing data, our method of approach was to identify continuous variable and categorical variables and create new variables that contain more specific
+information according to what we wanted to analyze.  We used multiple _dplyr_ functions such as _**filter()**_, _**select()**_,
+_**mutate()**_, _**summarize()**_, _**groupby()**_ to enable us to narrow down the large data set for processing and visualization purposes. _**filter()**_
+function was used to filter out the data set by genre. We used _**groupby()**_ to group distinct observations in a variable
+together in order to apply other functions such as _**summarize()**_, and _**mutate()**_, using which we were able to create our own variables and compare them to the
+existing variables. To compare different variables together we used the _ggplot_ library to plot the graphs of different types of
+graph such as scatter plots, box plots, histograms, and line plots. For two continuous variables we used scatter plots and line plots which allowed us to identify
+the trend in the data, and applying a linear regression model to this type of plot allowed us to predict the future trend of the two variables. We used box plots
+because they enabled us see the relationship between categorical variables and continuous variables. Histograms were used to find the average distribution of
+continuous variables and understand what values are most likely for each variable.
+
+The main statistical methods that we used was _mean()_. It enabled us to view a group of data as one concise value that helped in analyses of data. Another function we used to study the
+data was _range()_, to study the either extent of a variable. A complex statistical method we used was the linear regression model in _geom_smooth()_ which was a part of the ggplot
+library. This model enabled us to study the trends of the data that we plotted as well as predict what would be the most likely direction of the trend.
+
+## Results
+
+Importing the required libraries and the dataset (with a quick view of our final data set). 
+```{r}
+library(tidyverse)
+library(ggplot2)
+musicDataPopular <- read_delim("compiledMusicData_Spotify.csv")
+musicDataPopular %>% 
+  head()
+```
+
+### Question 1 : What are the most popular music genres?
+
+```{r}
+
+
+popular_genre <- musicDataPopular %>% 
+  select(artist_name, track_name, year, genre, popularity) %>%
+  filter(popularity >= 60 & year != 2020) %>%
+  group_by(year, genre) %>%
+  summarise(genre_count = n())
+
+popular_genre %>%
+  head(5)
+
+ggplot(popular_genre, aes(x = year, y = genre_count, col = genre)) +
+  geom_point() +
+  geom_line() +
+  labs(title = "Popular Genres based on Years", 
+       x = "Year", 
+       y = "Song Count based off of Genre")
+```
+
+Here I created a graph that contains all of the genres that has a song with a popularity score of over 60. 
+
+```{r}
+top_three <- popular_genre %>%
+  filter(genre %in% c("pop", "hip-hop", "dance"))
+
+top_three %>%
+  head(5)
+
+ggplot(top_three, aes(x = year, y = genre_count, col = genre)) +
+  geom_point() +
+  geom_line() + 
+    labs(title = "Popular Genres based on Years", 
+       x = "Year", 
+       y = "Song Count based off of Genre")
+
+```
+
+Here I created a seperate graph that only contains the top three most popular genres
+
+My data and graph represents the number of songs in each genre that had a popularity score of 
+over 60 based on the years, 2000-2019. It tells me which genres are doing the best every year.
+My question was, what are the most popular music genres? My first graph includes all of the 
+genres that had at least one song with a popularity score of over 60. Once I created this graph I
+noticed that there were too many genres, so I filtered out the top three genres with the highest 
+number of song counts. I found, based on my graph and results, that the top three genres are 
+dance, hip-hop, and pop. 
+
+The limitation of our graph was that the songs were chosen randomly, meaning that our dataset 
+consisted of songs from all different genres without a specific goal. This could flaw our dataset
+as different genre songs with a popularity score of over 60 could have been left out. I think 
+that I could extend my story and find the top number 1 genre based on a more accurate study with 
+other measurements from a different dataset. 
+
+This dataset would only consist of songs with a play count of over ten million and it should 
+introduce new variables such as days in the top charts, awards won, or yearly song listens. Once 
+I find a dataset that fits the description, I will merge it with the original dataset that we 
+used for this project. With these new variables, I will be able to plot a more accurate graph 
+where I will compare each of them to years and base the size of the dots according to the 
+popularity scale, with higher scores being bigger. This analysis will provide our group with a 
+more accurate outcome than before. 
+
+### Question 2 : Is there a relationship between rise of artist and genre popularity ?
+
+### Artist count per year - by genre 
+
+Most of our earlier graphs focused on the song count which we thought was not very indicative on artist success. The first thing we wanted to explore was the number of distinct artist who wrote popular songs. We thought this would be more indicative of artist success as multiple popular songs could be written by 1 artist. Using the _summarize_ functions, _group_by_ using _year_ and _genre_, and the _n_distinct_ function to create a new variable _tot_artist_ which represents the total number of distinct artist that wrote popular music that year. 
+
+```{r}
+artist_count <- musicDataPopular %>%
+  filter(popularity >= 60 & year != 2020) %>%
+  filter(genre %in% c("hip-hop","pop", "dance")) %>%
+  group_by(year, genre) %>%
+  summarize(tot_artist = n_distinct(artist_name))
+
+ggplot(artist_count,aes(year,tot_artist, col = genre)) + geom_point() + geom_line() + xlab("Year") + ylab("Artist Count")
+
+```
+Through this graph we see that over time more distinct artist are making popular songs. We believe this indicates some potential for artist to be successful in the popular genres. However, we want to see if any of the genres could be more successful in specific genres, so we decided to look at how many distinct artist make up a popular genre.
+
+### Distinct Artist in genre by year
+
+To find what we were interested in we used the _group_by_ function with the _genre_, and _summarize_ to create _total_artist_ which is just the total count of distinct artist in a genre. 
+
+```{r}
+artist_tot_count <- musicDataPopular %>%
+  filter(popularity >= 60 & year != 2020) %>%
+  filter(genre %in% c("hip-hop","pop", "dance")) %>%
+  group_by(genre) %>%
+  summarize(total_artist = n_distinct(artist_name))
+
+ggplot(artist_tot_count, aes(genre,total_artist, fill = genre)) + geom_col(position = 'dodge')+ylab("Artist Count")
+```
+
+From this bar graph we see that dance genre has the most distinct artist. This made us think that someone might have the most success if they made a song that fit in the dance genre. However, we wanted to see new artist data so we decided to make a data set called _break_out_ which would show an artist and when they made their first popular song. This would show us how many new artist actually made it (wrote a popular song) and were succesful.
+
+### Number of break out artist per year
+
+To perform what question we were interested we employed similar sunctions as we had before. We first used _group_by_ with _artist_name_ which we then used _mutate_ to create a new column called _break_out_year_ representing the first year a distinct artist wrote a popular song. This was done by finding the _min_ of each artist group's _year_ column. After creating this we further employed _group_by_ using _break_out_year_ and _genre_ to make the column _new_artist_count_ which was the number of new artist who broke out (made their first popular song) for a specified year. This was done using _summarize_ and _n_distinct_ of _artist_name_. 
+
+```{r}
+
+new_artist <- musicDataPopular %>%
+  filter(popularity >= 60 & year != 2020) %>%
+  filter(genre %in% c("hip-hop","pop", "dance")) %>%
+  group_by(artist_name) %>%
+  mutate(break_out_year = min(year)) %>%
+  group_by(break_out_year,genre) %>%
+  summarize(new_artist_count = n_distinct(artist_name))
+
+
+ggplot(new_artist,aes(break_out_year,new_artist_count, col = genre))+geom_point() + geom_line() + xlab("Year") + 
+  ylab("New Artist Count")
+  
+```
+
+We observe a difference in trends and see that hip-hop genre might be the best way to be a break out artist. We believe this because there are more new artists who made it in the hip-hop genre during current times. 
+
+### New artist vs old artist
+
+Something we further thought would be useful was to see the trend of new artist vs the old artist. We used a _left_join_ by _year_ matching with _break_out_year_ and the _genre_ columns matching. We then further changed the _tot_artist_  variable ,which was the count of distinct artist per year, using the _mutate_ function to be changed to _tot_artist_ minus _new_artist_count_ . This would get our _tot_artist_ to be the count of old artists. We then used _pivot_longer_ to create a longer table which createcd a new varible _artist_type_ which would say wether the _count_ (number of artist) was "old" artist or "new" artist. 
+
+```{r}
+song_by_new <- left_join(artist_count,new_artist, by = c('year' = 'break_out_year','genre' = 'genre'))
+
+song_by_new <- song_by_new %>%
+  mutate(tot_artist = tot_artist - new_artist_count)
+
+colnames(song_by_new)[colnames(song_by_new) == "new_artist_count"] <- "new"
+colnames(song_by_new)[colnames(song_by_new) == "tot_artist"] <- "old"
+
+song_by_old <- pivot_longer(song_by_new, !c('year','genre'),
+                            names_to = "artist_type", values_to = "count")
+ggplot(song_by_old, aes(year,count, col = genre, shape = artist_type)) + geom_point() +geom_line() + xlab("Year")+
+  ylab("Artist Count")
+```
+
+For this plot we did have a missing variable as for the earlies year there was not previous year that could be used. From this we see that the _count_ has a larger difference in the _hip-hop_ genre. For this reason we believed that _hip-hop_ is the best genre for a new upcoming artist to take.
+
+### Q3 : "What are the basic elements of a song that could result in it becoming a popular song?"
+
+#### Mode
+
+```{r}
+musicDataPopular <- read_delim("compiled_FINAL_MusicData_Spotify.csv")
+musicDataPopular %>% 
+  ggplot(aes(factor(mode), popularity, fill = factor(mode))) +
+  geom_boxplot() +
+  labs(x = "Mode of a song (Major or Minor Scale)",
+       y = "Popularity",
+       title = "Mode effect on popularity")
+```
+
+On average, the more popular songs have are of the major scale. 
+
+#### Valence and Energy of a Song
+
+```{r }
+musicDataPopular %>% 
+  filter(genre %in% c("dance")) %>% 
+  group_by(genre) %>% 
+  ggplot(aes(energy,valence)) + 
+  geom_point(col = "firebrick2") + 
+  geom_smooth(method = lm) +
+  labs(x = "Energy",
+       y = "Valence",
+       title = "Relationship between valence and energy for Dance")
+```
+
+The higher the energy of a dance song, the more the valence of the song. 
+
+```{r}
+musicDataPopular %>% 
+  filter(genre %in% c("pop")) %>% 
+  group_by(genre) %>% 
+  ggplot(aes(energy,valence)) + 
+  geom_point(col = "dodgerblue2") + 
+  geom_smooth(method = lm) +
+  labs(x = "Energy",
+       y = "Valence",
+       title = "Relationship between valence and energy for Pop")
+```
+
+The higher the energy of a Pop song, the more the valence of the song. 
+
+```{r}
+musicDataPopular %>% 
+  filter(genre %in% c("hip-hop")) %>% 
+  group_by(genre) %>% 
+  ggplot(aes(energy,valence)) + 
+  geom_point() + 
+  geom_smooth(method = lm) +
+  labs(x = "Energy",
+       y = "Valence",
+       title = "Relationship between valence and energy for Hip-Hop")
+```
+
+The higher the energy of a Hip-Hop song, the more the valence of the song. 
+
+```{r}
+musicDataPopular %>% 
+  filter(genre %in% c("dance","pop","hip-hop")) %>% 
+  group_by(genre,year) %>%
+  summarize(mean_valence = mean(valence)) %>% 
+  ungroup() %>% 
+  ggplot(aes(year,mean_valence, col = genre)) + 
+  geom_point() + 
+  geom_smooth(method = lm, se = FALSE) +
+  labs(x = "Year",
+       y = "Valence",
+       title = "Trend of Valence for each genre by Year")
+```
+
+The trend shows that in the more recent years, the valence of the song seems to decrease. 
+
+```{r}
+musicDataPopular %>% 
+  filter(genre %in% c("dance","pop","hip-hop")) %>% 
+  group_by(genre,year) %>%
+  summarize(mean_energy = mean(energy)) %>% 
+  ungroup() %>% 
+  ggplot(aes(year,mean_energy, col = genre)) + 
+  geom_point() + 
+  geom_smooth(method = lm, se = FALSE) +
+  labs(x = "Year",
+       y = "Energy",
+       title = "Trend of Energy for each genre by Year")
+```
+
+The trend shows that in the more recent years, the energy of the song seems to increases for dance, stay about the same for hip-hop and interesting decrease for pop. 
+
+```{r}
+musicDataPopular %>% 
+  filter(genre %in% c("dance","pop","hip-hop")) %>% 
+  group_by(genre,popularity) %>% 
+  summarize(mean_valence = mean(valence)) %>% 
+  ggplot(aes(popularity,mean_valence, col = genre)) + 
+  geom_line() + 
+  labs(x = "Popularity",
+       y = "Valence",
+       title = "Relationship between Valence and popularity by genre ")
+```
+
+More popular songs have more extremes of valence values. 
+
+```{r}
+musicDataPopular %>% 
+  filter(genre %in% c("dance","pop","hip-hop")) %>% 
+  group_by(genre,popularity) %>% 
+  summarize(mean_energy = mean(energy)) %>% 
+  ggplot(aes(popularity,mean_energy, col = genre)) + 
+  geom_line() + 
+  labs(x = "Popularity",
+       y = "Energy",
+       title = "Relationship between Energy and popularity by genre ")
+```
+
+More popular songs have more extremes of energy values. 
+
+#### Duration
+
+```{r}
+Dance <- musicDataPopular %>% 
+  filter(genre %in% c("dance")) %>% 
+  filter(duration_ms < 400000)
+
+dance_duration_mean <- musicDataPopular %>% 
+  filter(genre %in% c("dance")) %>% 
+  filter(duration_ms < 400000) %>% 
+  summarize(mean_duration = mean(duration_ms)) 
+
+Pop <- musicDataPopular %>% 
+  filter(genre %in% c("pop"))
+
+pop_duration_mean <- musicDataPopular %>% 
+  filter(genre %in% c("pop")) %>% 
+  summarize(mean_duration = mean(duration_ms)) 
+
+HipHop <- musicDataPopular %>% 
+  filter(genre %in% c("hip-hop")) %>% 
+  filter(duration_ms < 400000) 
+
+hiphop_duration_mean <- musicDataPopular %>% 
+  filter(genre %in% c("hip-hop")) %>% 
+  filter(duration_ms < 400000) %>% 
+  summarize(mean_duration = mean(duration_ms)) 
+
+ggplot() + 
+  geom_histogram(aes(x = Dance$duration_ms, fill = "Dance"), bins = 30, alpha = 0.5) +
+  geom_histogram(aes(x = HipHop$duration_ms, fill = "HipHop"), bins = 30,alpha = 0.5) +
+  geom_histogram(aes(x = Pop$duration_ms, fill = "Pop"), bins = 30,alpha = 0.7) +
+  scale_fill_manual(values = c("Dance" = "red", "Pop" = "blue", "HipHop" = "green")) +
+  geom_vline(xintercept = dance_duration_mean$mean_duration,col = "red", lty = 1, lwd = 1) +
+  geom_vline(xintercept = pop_duration_mean$mean_duration,col = "blue", lty = 2, lwd = 1) +
+  geom_vline(xintercept = hiphop_duration_mean$mean_duration,col = "green", lty = 4, lwd = 1) +
+  labs(title = "Distribution of Duration of Songs", x = "Song Duration (in ms)", y = "Number of songs")
+  
+```
+
+
+```{r}
+musicDataPopular %>% 
+  filter(genre %in% c("dance","pop","hip-hop")) %>% 
+  group_by(genre,popularity) %>% 
+  summarize(mean_duration = mean(duration_ms)) %>% 
+  ggplot(aes(popularity,mean_duration, col = genre)) + 
+  geom_line() +
+  labs(x = "Popularity",
+       y = "Average Duration of a song",
+       title = "Avg Duration v/s Popularity")
+```
+
+On average all the top genres had an average duration of 3 mins and 30 secs.
+
+### Discuss
+
+My question was, what are the most popular music genres? My first graph includes all of the 
+genres that had at least one song with a popularity score of over 60. Once I created this graph I
+noticed that there were too many genres, so I filtered out the top three genres with the highest 
+number of song counts. I found, based on my graph and results, that the top three genres are 
+dance, hip-hop, and pop. 
+
+The limitation of our graph was that the songs were chosen randomly, meaning that our dataset 
+consisted of songs from all different genres without a specific goal. This could flaw our dataset
+as different genre songs with a popularity score of over 60 could have been left out. I think 
+that I could extend my story and find the top number 1 genre based on a more accurate study with 
+other measurements from a different dataset. 
+
+This dataset would only consist of songs with a play count of over ten million and it should 
+introduce new variables such as days in the top charts, awards won, or yearly song listens. Once 
+I find a dataset that fits the description, I will merge it with the original dataset that we 
+used for this project. With these new variables, I will be able to plot a more accurate graph 
+where I will compare each of them to years and base the size of the dots according to the 
+popularity scale, with higher scores being bigger. This analysis will provide our group with a 
+more accurate outcome than before. 
+
+### Conclusion 
+
+In conclusion, our group's report consists of a guide for anybody already in or wanting to join 
+the music industry. Throughout our guide, we address three key questions: What are the most 
+popular music genres? Is there a relationship between the rise of artists and popular genres? 
+What are the basic elements of a song that could result in it becoming a popular song? 
+
+Our guide provides people with yearly societal trends as well as giving them information on which
+genre and artists seem to do the best throughout the years. From this, they can base their next 
+piece of work on the influence provided by our guide. Our guide will also include measurements of
+different basic elements that are used in song-making. These measurements include mode, 
+valence/energy, and the duration of the song. We have included many graphs with data for each 
+question from our group so that our audience can easily understand the results. With these 
+results, they can make comparisons based on the years to predict what future trends are going to 
+be like. 
+
+### Q1 : "What are the most popular genres?"
+
+From our different graph we can clearly see that there are clear more popular genres. These genres are hip-hop, pop, and dance. This made us want to focus on these genres to be able to see trends on these specific genres.
+
+### Q2 : "Is there a correlation between rise of artist and genre popularity?" 
+
+Through this question we hoped to see that there was some way we could prove that an artist could make it in a popular genre. To find this we incorporated various graph and various function to be able to do so. A lot of the graphs shown in this question looked similar to the ones in the previous quesiton. The only differences are lower y-value as well as different spikes. Having a lower y-value indicated a lower amount of artist which means that the same artist wrote popular songs in a given year. From all our different graph we would think that dance might be the genre to select. This is because in our first graph we saw that dance had the most upward trend of distinct artist per year and had the highest distinct count. We further believed this when we calculated the count for each genre where dance had further the highest count overall (all years). However, we thought that counting the new artist who actually become succesful (write a popular song) per year would be a better indication if the genre plays a role in if a artist would become succesful. For this reason we created the graph that where there would be a count of how many new artist made a popular song. This is where we begin to see a different story, we see that there is actually a greater increase in new artist who make it in the hip-hop genre. To furhter solidify this we made a graph to show the the trends between old artist and new aritst who have made popular songs. In this graph we see that there is a greater difference in the old hip-hop artist to new artist when compared to all of the other popular genres. For this reason we believe that the best genre to provide a new aritst with succes would be hip-hop. 
+
+### Q3 : "What are the basic elements of a song that could result in it becoming a popular song?"
+
+Through this question we hoped to provide new and current music artist with guidelines on what the different components of songs should be so that they have a higher
+likelihood of making a song that would become popular. The 3 elements of music that we focused on were _mode_, _Valence_, _Energy_,and _Duration_. 
+
+**Mode** indicates the modality (major or minor) of a track, the type of scale from which its melodic content is derived. Major is represented by 1 and minor is 0. Our **results** show that on average the more popular songs are the more major the mode of the track is. This helps the artist take the most fundamental decision when it comes to making a song. 
+
+**Valence** is a measure from 0.0 to 1.0 describing the musical positiveness conveyed by a track. Tracks with high valence sound more positive (e.g. happy, cheerful, euphoric), while
+tracks with low valence sound more negative (e.g. sad, depressed, angry). **Energy** is a measure from 0.0 to 1.0 and represents a perceptual measure of intensity and activity.
+Typically, energetic tracks feel fast, loud, and noisy. For example, death metal has high energy, while a Bach prelude scores low on the scale. Perceptual features contributing to this
+attribute include dynamic range, perceived loudness, timbre, onset rate, and general entropy. In our analysis, we first wanted to know the relationship between the valence of a song as
+well as the energy, and using a linear regression model we identified that for all three genres of dance, hip-hop, and pop, there was a positive correlation between them. This meant
+that more energetic and upbeat songs were usually happier and cheerful whereas mellow and sober songs were more sad, depressed and angry.
+Using a scatter plot between valence and year variable, we found out that more recent songs for all of three genres are decreasing in valence (more sad, depressed and angry songs).
+Applying the same analysis to energy and year, we found an interesting trend that though the valence decreased in more recent years, the enrgy for the songs mostly stayed the same and
+for the dance genre, it interestingly increased. This did not comply with our previous analysis of the relationship between energy and valency of songs and we thought that this might be
+due to a few outliers in the graph and also less amount of sample data. For the relationship between valency and energy of a song and popularity, the most popular songs had extreme
+values of valency and energy depicting that songs that conveyed true, deep and raw emotions were super popular whereas songs with mid valency and energy were less popular.
+
+**Duration** is the length of the song in milliseconds. The average length for each genre was:
+
+Mean song duration for Dance is `r dance_duration_mean$mean_duration` ms which is 
+`r floor((dance_duration_mean$mean_duration/1000)/60)` mins and
+`r floor((((dance_duration_mean$mean_duration/1000)/60) - floor((dance_duration_mean$mean_duration/1000)/60))*60)`
+secs.
+
+Mean song duration for Pop is `r pop_duration_mean$mean_duration` ms which is 
+`r floor((pop_duration_mean$mean_duration/1000)/60)` mins and
+`r floor((((pop_duration_mean$mean_duration/1000)/60) - floor((pop_duration_mean$mean_duration/1000)/60))*60)`
+secs.
+
+Mean song duration for Hip-hop is `r hiphop_duration_mean$mean_duration` ms which is 
+`r floor((hiphop_duration_mean$mean_duration/1000)/60)` mins and
+`r floor((((hiphop_duration_mean$mean_duration/1000)/60) - floor((hiphop_duration_mean$mean_duration/1000)/60))*60)`
+secs.
+
+So as a growing music artist or a new artist, our analysis reveals that creating a song in the genre of dance, or pop, or hip-hop with a major modality, artfully weaved with true and
+deep emotions expressed in both lyrics and music with the duration of 3 mins and 30 secs would make an artist more likely to become more popular.
+
