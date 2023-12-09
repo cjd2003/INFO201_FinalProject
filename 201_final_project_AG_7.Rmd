@@ -464,45 +464,23 @@ On average all the top genres had an average duration of 3 mins and 30 secs.
 
 ### Discuss
 
-My question was, what are the most popular music genres? My first graph includes all of the 
-genres that had at least one song with a popularity score of over 60. Once I created this graph I
-noticed that there were too many genres, so I filtered out the top three genres with the highest 
-number of song counts. I found, based on my graph and results, that the top three genres are 
-dance, hip-hop, and pop. 
-
 The limitation of our graph was that the songs were chosen randomly, meaning that our dataset 
 consisted of songs from all different genres without a specific goal. This could flaw our dataset
-as different genre songs with a popularity score of over 60 could have been left out. I think 
-that I could extend my story and find the top number 1 genre based on a more accurate study with 
+as different genre songs with a popularity score of over 60 could have been left out. We think 
+that we could extend tje story and find the top number 1 genre based on a more accurate study with 
 other measurements from a different dataset. 
 
 This dataset would only consist of songs with a play count of over ten million and it should 
 introduce new variables such as days in the top charts, awards won, or yearly song listens. Once 
-I find a dataset that fits the description, I will merge it with the original dataset that we 
-used for this project. With these new variables, I will be able to plot a more accurate graph 
-where I will compare each of them to years and base the size of the dots according to the 
+we find a dataset that fits the description, we will merge it with the original dataset that we 
+used for this project. With these new variables, we will be able to plot a more accurate graph 
+where we will compare each of them to years and base the size of the dots according to the 
 popularity scale, with higher scores being bigger. This analysis will provide our group with a 
 more accurate outcome than before. 
 
-### Conclusion 
-
-In conclusion, our group's report consists of a guide for anybody already in or wanting to join 
-the music industry. Throughout our guide, we address three key questions: What are the most 
-popular music genres? Is there a relationship between the rise of artists and popular genres? 
-What are the basic elements of a song that could result in it becoming a popular song? 
-
-Our guide provides people with yearly societal trends as well as giving them information on which
-genre and artists seem to do the best throughout the years. From this, they can base their next 
-piece of work on the influence provided by our guide. Our guide will also include measurements of
-different basic elements that are used in song-making. These measurements include mode, 
-valence/energy, and the duration of the song. We have included many graphs with data for each 
-question from our group so that our audience can easily understand the results. With these 
-results, they can make comparisons based on the years to predict what future trends are going to 
-be like. 
-
 ### Q1 : "What are the most popular genres?"
 
-From our different graph we can clearly see that there are clear more popular genres. These genres are hip-hop, pop, and dance. This made us want to focus on these genres to be able to see trends on these specific genres.
+The first graph includes all of the genres that had at least one song with a popularity score of over 60. Once we created this graph,  wenoticed that there were too many genres, so we filtered out the top three genres with the highest number of song counts. We found, based on tje graph and results, that the top three genres are dance, hip-hop, and pop. 
 
 ### Q2 : "Is there a correlation between rise of artist and genre popularity?" 
 
@@ -546,4 +524,20 @@ secs.
 
 So as a growing music artist or a new artist, our analysis reveals that creating a song in the genre of dance, or pop, or hip-hop with a major modality, artfully weaved with true and
 deep emotions expressed in both lyrics and music with the duration of 3 mins and 30 secs would make an artist more likely to become more popular.
+
+### Conclusion 
+
+In conclusion, our group's report consists of a guide for anybody already in or wanting to join 
+the music industry. Throughout our guide, we address three key questions: What are the most 
+popular music genres? Is there a relationship between the rise of artists and popular genres? 
+What are the basic elements of a song that could result in it becoming a popular song? 
+
+Our guide provides people with yearly societal trends as well as giving them information on which
+genre and artists seem to do the best throughout the years. From this, they can base their next 
+piece of work on the influence provided by our guide. Our guide will also include measurements of
+different basic elements that are used in song-making. These measurements include mode, 
+valence/energy, and the duration of the song. We have included many graphs with data for each 
+question from our group so that our audience can easily understand the results. With these 
+results, they can make comparisons based on the years to predict what future trends are going to 
+be like. 
 
